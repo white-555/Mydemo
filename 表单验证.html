@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			span{
+				font-size: 12px;
+			}
+			#tit{
+				text-align: center;
+			}
+			#foot{
+				text-align: center;
+			}
+			tr td:nth-child(1){
+				text-align: right;
+			}
+			table{
+				width: 400px;
+			}
+			/* 验证码框 */
+			.cod{
+				display: block;
+				width: 60px;
+				height: 20px;
+				border: 1px red solid;
+				float: right;
+			}
+			u{
+				float: right;
+			}
+			#code{
+				float: left;
+			}
+			.codese{
+				display: block;
+				float: left;
+				width: 30px;
+				padding-left: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<form action="http://www.baidu.com" method="get">
+		<table border="" cellspacing="0" cellpadding="4">
+			<tr>
+				<td colspan="2" id="tit">
+					用户名注册
+				</td>
+			</tr>
+			<tr>
+				<td>
+					姓名
+				</td>
+				<td>
+					<input type="text" id="names"/><span></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					性别
+				</td>
+				<td>
+					<input type="radio" name="sex" value="" />男
+					<input type="radio" name="sex" value="" />女
+				</td>
+			</tr>
+			<tr>
+				<td>
+					年龄
+				</td>
+				<td>
+					<input type="text" name="" id="age" value="" />
+					<span></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					密码
+				</td>
+				<td>
+					<input type="text" id="pwd" value="" />
+					<span></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					确认密码
+				</td>
+				<td>
+					<input type="text" id="repeatPwd"/>
+					<span></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					手机
+				</td>
+				<td>
+					<input type="text" id="phone"/>
+					<span></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					QQ
+				</td>
+				<td>
+					<input type="text" name="" id="QQ"/>
+					<span></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					邮箱
+				</td>
+				<td>
+					<input type="text" name="" id="email" />
+					<span></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					邮编
+				</td>
+				<td>
+					<input type="text" id="postCade" />
+					<span></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					身份证
+				</td>
+				<td>
+					<input type="text" id="idCard"/>
+					<span></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					验证码
+				</td>
+				<td>
+					<input type="text" name="" id="code" />
+					<span class="codese"></span>
+					<u>看不清</u>
+					<span class="cod"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					爱好
+				</td>
+				<td>
+					<input type="checkbox" name="hobby" />
+					足球
+					<input type="checkbox" name="hobby"/>
+					篮球
+					<input type="checkbox" name="hobby" />
+					排球
+					<input type="checkbox" name="hobby" />
+					网球
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" id = "foot">
+					<input type="submit" value="注册" />
+				</td>
+			</tr>
+		</table>
+		</form>
+	</body>
+</html>
+<script type="text/javascript">
+	var names = document.getElementById("names");
+	var namesTest = /^[a-zA-Z]\w{5,9}$/;
+	var nameFlag = false;
+	var ageFlag = false;
+	var repeatPwdFlag = false;
+	var phoneFlag = false;
+	var QQFlag = false;
+	var emailFlag = false;
+	var postCadeFlag = false;
+	var idCardFlag = false;
+	var codeFlag = false;
+	names.onblur = function(){
+		if(namesTest.test(names.value)){
+			names.nextElementSibling.innerHTML = "正确"
+			nameFlag = true;
+		}else{
+			names.nextElementSibling.innerHTML = "错误"
+		}
+	}
+	var ages = document.getElementById("age");
+	var agesTest = /^\d{1,2}$/;
+	ages.onblur = function(){
+		if(agesTest.test(ages.value)){
+			ages.nextElementSibling.innerHTML = "正确"
+			ageFlag = true;
+		}else{
+			ages.nextElementSibling.innerHTML = "错误"
+		}
+	}
+	var pwds = document.getElementById("pwd");
+	var pwdsTest = /^.{6,18}$/;
+	pwds.onblur = function(){
+		if(pwdsTest.test(pwds.value)){
+			pwds.nextElementSibling.innerHTML = "正确"
+			var numtest = /^\d+$/;
+			var chartest = /^[@#$%&*]+$/;
+			var entest = /^[a-zA-Z]+$/;
+			var _numtest = /\d/;
+			var _chartest = /[@#$%&*]/;
+			var _entest = /[a-zA-Z]/;
+			if(numtest.test(pwds.value)||chartest.test(pwds.value)||entest.test(pwds.value)){
+				alert("密码等级弱")
+			}else if(_numtest.test(pwds.value)&&_chartest.test(pwds.value)&&_entest.test(pwds.value)){
+				alert("密码等级强")
+			}else{
+				alert("密码等级中")
+			}
+		}else{
+			pwds.nextElementSibling.innerHTML = "错误"
+		}
+	}
+	var repeatPwds = document.getElementById("repeatPwd");
+	repeatPwds.onblur = function(){
+		if(repeatPwds.value==pwds.value){
+			repeatPwds.nextElementSibling.innerHTML = "与上方一致"
+			repeatPwdFlag = true;
+		}else{
+			repeatPwds.nextElementSibling.innerHTML = "与上方不一致"
+		}
+	}
+	var phones = document.getElementById("phone");
+	var phonesTest = /^1[358]\d{9}$/;
+	phones.onblur = function(){
+		if(phonesTest.test(phones.value)){
+			phones.nextElementSibling.innerHTML = "正确"
+			phoneFlag = true;
+		}else{
+			phones.nextElementSibling.innerHTML = "错误"
+		}
+	}
+	var QQs = document.getElementById("QQ");
+	var QQsTest = /^[1-9]\d{4,11}$/;
+	QQs.onblur = function(){
+		if(QQsTest.test(QQs.value)){
+			QQs.nextElementSibling.innerHTML = "正确"
+			QQFlag = true;
+		}else{
+			QQs.nextElementSibling.innerHTML = "错误"
+		}
+	}
+	var emails = document.getElementById("email");
+	var emailsTest = /@/;
+	emails.onblur = function(){
+		if(emailsTest.test(emails.value)){
+			emails.nextElementSibling.innerHTML = "正确"
+			emailFlag = true;
+		}else{
+			emails.nextElementSibling.innerHTML = "错误"
+		}
+	}
+	var postCades = document.getElementById("postCade");
+	var postCadesTest = /^\d{6}$/;
+	postCades.onblur = function(){
+		if(postCadesTest.test(postCades.value)){
+			postCades.nextElementSibling.innerHTML = "正确"
+			postCadeFlag = true;
+		}else{
+			postCades.nextElementSibling.innerHTML = "错误"
+		}
+	}
+	var idCards = document.getElementById("idCard");
+	var idCardsTest = /^\d{17}[0-9X]$/;
+	idCards.onblur = function(){
+		if(idCardsTest.test(idCards.value)){
+			idCards.nextElementSibling.innerHTML = "正确"
+			idCardFlag = true;
+		}else{
+			idCards.nextElementSibling.innerHTML = "错误"
+		}
+	}
+	//验证码框
+	var cods =document.getElementsByClassName("cod");
+	var y;
+	//看不清
+	var look = document.querySelector("u");
+	look.onclick = function(){
+		var x = "0123456789zxcvbnmasdfghjklpoiuytrewqZXCVBNMLKJHGFDSAQWERTYUIOP";
+		var i = parseInt(Math.random()*62);
+		var b = parseInt(Math.random()*62);
+		var c = parseInt(Math.random()*62);
+		var d = parseInt(Math.random()*62);
+		y = ""+x.charAt(i)+x.charAt(b)+x.charAt(c)+x.charAt(d)
+		cods[0].innerHTML = y;
+	}
+	//验证码校对
+	var codes = document.getElementById("code");
+	codes.onblur = function(){
+		if(codes.value==y){
+			codes.nextElementSibling.innerHTML = "正确"
+			codeFlag = true;
+		}else{
+			codes.nextElementSibling.innerHTML = "错误"
+			alert("验证码错误")
+		}
+	}
+	var sexs = document.getElementsByName("sex");
+	var hobbys = document.getElementsByName("hobby")
+	var oForm = document.querySelector("form");
+	oForm.onsubmit = function(){
+		if(!sexs[0].checked&&!sexs[1].checked){
+			alert("请选择性别");
+			return false;
+		}
+		if(!hobbys[0].checked&&!hobbys[1].checked&&!hobbys[2].checked&&!hobbys[3].checked){
+			alert("请选择爱好");
+			return false;
+		}
+		if(nameFlag==false || ageFlag==false || repeatPwdFlag==false ||phoneFlag==false || QQFlag==false ||emailFlag==false || postCadeFlag==false || idCardFlag==false || codeFlag==false){
+			return false;
+		}
+		return true;
+	}
+	
+</script>
