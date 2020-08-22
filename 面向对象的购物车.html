@@ -1,11 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table{
+                width:50%;
+                position:relative;
+                margin:30px auto;
+                border-collapse: collapse;
+                border:1px solid gray;
+            }
+            th{
+                background: yellow;
+                height:2.5em;
+                margin: 0 auto;
+            }
+            tr{
+                height:2.5em;
+                margin: 0 auto;
+                text-align: center;
+            }
+    </style>
 </head>
+
 <body>
-    
+    <!-- 购物车信息 -->
+    <table border="1px">
+        <tr>
+            <th>商品名称</th>
+            <th>数量</th>
+            <th>单价</th>
+            <th>小计</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td colspan="5">
+                一共<span id="">0</span>件
+                商品,共花费<span>0</span>元
+            </td>
+        </tr>
+    </table>
+    <table border="1px">
+        <tr>
+            <th>商品名称</th>
+            <th>商品单价</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td><span>土豆丝</span></td>
+            <td><span>10</span></td>
+            <td>
+                操作:<input type="button" value="增加" class="add" />
+            </td>
+        </tr>
+    </table>
 </body>
+
 </html>
+<script>
+    class shop{
+        // 获取购物车有多少商品,并且需要随时跟新
+        getgoodsnumberandupdata(){
+
+        }
+
+        // 增加商品
+
+        goodsAdd(btn){
+            // alert("1")
+            // 通过点击按钮获取td的数量
+            let goodsnumbe= btn.previousElementSibling;
+			oGoodsNum.innerHTML = Number(oGoodsNum.innerHTML) + 1;
+        }
+    }
+    let c = new shop();
+    c.goodsAdd()
+</script>
